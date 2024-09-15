@@ -21,6 +21,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.text.input.ImeAction
 import com.example.labs_mobile.labs.lab1.task2.utils.FuelOilCalculator
 
+
 @Composable
 fun Lab1Task2Screen() {
     var carbon by remember { mutableStateOf(85.50) }
@@ -146,7 +147,7 @@ fun FuelInputField(value: Double, onValueChange: (Double) -> Unit, label: String
         TextField(
             value = inputValue,
             onValueChange = {
-                if (it.all { char -> char.isDigit() || char == '.' }) { // Only allow digits and dots
+                if (it.all { char -> char.isDigit() || char == '.' }) {
                     inputValue = it
                     it.toDoubleOrNull()?.let { it1 -> onValueChange(it1) }
                 }
@@ -155,9 +156,6 @@ fun FuelInputField(value: Double, onValueChange: (Double) -> Unit, label: String
                 keyboardType = KeyboardType.Number,
                 imeAction = ImeAction.Done
             ),
-            keyboardActions = KeyboardActions(onDone = {
-                // Handle the 'Done' action if needed
-            }),
             modifier = Modifier
                 .background(Color.White)
                 .fillMaxWidth()

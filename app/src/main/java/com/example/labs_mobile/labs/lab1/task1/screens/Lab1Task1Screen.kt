@@ -1,177 +1,9 @@
-//package com.example.labs_mobile.labs.lab1.task1.screens
-//import com.example.labs_mobile.labs.lab1.task1.utils.FuelCalculator
-//import androidx.compose.foundation.background
-//import androidx.compose.foundation.border
-//import androidx.compose.foundation.layout.*
-//import androidx.compose.foundation.text.KeyboardOptions
-//import androidx.compose.foundation.text.KeyboardActions
-//import androidx.compose.material3.*
-//import androidx.compose.runtime.*
-//import androidx.compose.ui.Modifier
-//import androidx.compose.ui.graphics.Color
-//import androidx.compose.ui.text.input.KeyboardType
-//import androidx.compose.ui.unit.dp
-//import androidx.compose.ui.unit.sp
-//import androidx.compose.ui.text.style.TextAlign
-//import androidx.compose.ui.text.font.FontFamily
-//import androidx.compose.ui.text.font.FontWeight
-//import androidx.compose.foundation.verticalScroll
-//import androidx.compose.foundation.rememberScrollState
-//import androidx.compose.ui.draw.clip
-//import androidx.compose.ui.text.input.ImeAction
-//
-//
-//@Composable
-//fun Lab1Task1Screen() {
-//    var hp by remember { mutableStateOf(2.8) }
-//    var cp by remember { mutableStateOf(72.3) }
-//    var sp by remember { mutableStateOf(2.0) }
-//    var np by remember { mutableStateOf(1.1) }
-//    var op by remember { mutableStateOf(1.3) }
-//    var wp by remember { mutableStateOf(5.5) }
-//    var ap by remember { mutableStateOf(15.0) }
-//
-////    var result by remember { mutableStateOf("") }
-//    var dryMassResult by remember { mutableStateOf<Map<String, Double>>(emptyMap()) }
-//    var combustibleMassResult by remember { mutableStateOf<Map<String, Double>>(emptyMap()) }
-//    var lowerHeatingValueResult by remember { mutableStateOf(0.0) }
-//
-//    var error by remember { mutableStateOf<String?>(null) }
-//
-//    val scrollState = rememberScrollState()
-//
-//    Box(
-//        modifier = Modifier
-//            .padding(16.dp)
-//            .fillMaxSize()
-//            .background(Color(0xFFF9F9F9)) // Light gray background
-//            .verticalScroll(scrollState)
-//    ) {
-//        Column(
-//            modifier = Modifier
-//                .fillMaxSize()
-//                .padding(bottom = 16.dp)
-//        ) {
-//            Text(
-//                text = "Fuel Composition Calculator",
-//                fontSize = 24.sp,
-//                color = Color(0xFF333333), // Dark gray text
-//                fontFamily = FontFamily.Serif,
-//                modifier = Modifier
-//                    .padding(bottom = 16.dp)
-//                    .fillMaxWidth(),
-//                textAlign = TextAlign.Center
-//            )
-//
-//            FuelInputField(value = hp, onValueChange = { hp = it }, label = "HP")
-//            FuelInputField(value = cp, onValueChange = { cp = it }, label = "CP")
-//            FuelInputField(value = sp, onValueChange = { sp = it }, label = "SP")
-//            FuelInputField(value = np, onValueChange = { np = it }, label = "NP")
-//            FuelInputField(value = op, onValueChange = { op = it }, label = "OP")
-//            FuelInputField(value = wp, onValueChange = { wp = it }, label = "WP")
-//            FuelInputField(value = ap, onValueChange = { ap = it }, label = "AP")
-//
-//            Spacer(modifier = Modifier.height(16.dp))
-//
-//            Button(
-//                onClick = {
-////                    result = calculateResults(hp, cp, sp, np, op, wp, ap)
-//                    dryMassResult = FuelCalculator.calculateDryMass(hp, cp, sp, np, op, wp, ap)
-//                    combustibleMassResult = FuelCalculator.calculateCombustibleMass(hp, cp, sp, np, op, wp, ap)
-//                    lowerHeatingValueResult = FuelCalculator.calculateLowerHeatingValueWorking(hp, cp, sp, op, wp)
-//                },
-//                colors = ButtonDefaults.buttonColors(containerColor = Color(0xFF007BFF)), // Blue button
-//                modifier = Modifier
-//                    .fillMaxWidth()
-//                    .padding(horizontal = 16.dp)
-//                    .border(1.dp, Color(0xFF007BFF), shape = MaterialTheme.shapes.medium)
-//                    .clip(MaterialTheme.shapes.medium)
-//                    .background(Color(0xFF007BFF))
-//            ) {
-//                Text("Calculate", color = Color.White, fontFamily = FontFamily.Serif, fontWeight = FontWeight.Bold)
-//            }
-//
-//            Spacer(modifier = Modifier.height(16.dp))
-//
-//            if (error != null) {
-//                Text(
-//                    text = error!!,
-//                    color = Color.Red,
-//                    textAlign = TextAlign.Center,
-//                    fontFamily = FontFamily.Serif,
-//                    modifier = Modifier.fillMaxWidth()
-//                )
-//            } else {
-//                Text(
-//                    text = "Dry Mass = $dryMassResult",
-//                    fontFamily = FontFamily.Serif,
-//                    modifier = Modifier.fillMaxWidth()
-//                )
-//                Text(
-//                    text = "Combustible Mass = $combustibleMassResult",
-//                    fontFamily = FontFamily.Serif,
-//                    modifier = Modifier.fillMaxWidth()
-//                )
-//                Text(
-//                    text = "Lower Heating Value = $lowerHeatingValueResult",
-//                    fontFamily = FontFamily.Serif,
-//                    modifier = Modifier.fillMaxWidth()
-//                )
-//            }
-//
-//            Spacer(modifier = Modifier.height(16.dp))
-//
-//            Text("Formulas Used:", fontSize = 18.sp, fontFamily = FontFamily.Serif, fontWeight = FontWeight.Bold)
-//            Text("Dry Mass = 100 - WP", fontSize = 16.sp, fontFamily = FontFamily.Serif)
-//            Text("Combustible Mass = 100 - AP - WP", fontSize = 16.sp, fontFamily = FontFamily.Serif)
-//            Text("Lower Heating Value = (33.9 * CP) + (142.5 * HP) - (12.6 * OP)", fontSize = 16.sp, fontFamily = FontFamily.Serif)
-//        }
-//    }
-//}
-//
-//@OptIn(ExperimentalMaterial3Api::class)
-//@Composable
-//fun FuelInputField(value: Double, onValueChange: (Double) -> Unit, label: String) {
-//    var inputValue by remember { mutableStateOf(value.toString()) }
-//
-//    Column(modifier = Modifier.padding(bottom = 16.dp)) {
-//        Text(
-//            text = label,
-//            fontSize = 16.sp,
-//            fontFamily = FontFamily.Serif
-//        )
-//        TextField(
-//            value = inputValue,
-//            onValueChange = {
-//                if (it.all { char -> char.isDigit() || char == '.' }) { // Only allow digits and dots
-//                    inputValue = it
-//                    it.toDoubleOrNull()?.let { it1 -> onValueChange(it1) }
-//                }
-//            },
-//            keyboardOptions = KeyboardOptions.Default.copy(
-//                keyboardType = KeyboardType.Number,
-//                imeAction = ImeAction.Done
-//            ),
-//            keyboardActions = KeyboardActions(onDone = {
-//                // Handle the 'Done' action if needed
-//            }),
-//            modifier = Modifier
-//                .background(Color.White)
-//                .fillMaxWidth()
-//                .padding(8.dp)
-//                .border(1.dp, Color.Gray, shape = MaterialTheme.shapes.medium) // Border radius
-//                .clip(MaterialTheme.shapes.medium) // Rounded corners
-//        )
-//    }
-//}
 package com.example.labs_mobile.labs.lab1.task1.screens
-
 import com.example.labs_mobile.labs.lab1.task1.utils.FuelCalculator
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.text.KeyboardOptions
-import androidx.compose.foundation.text.KeyboardActions
 import androidx.compose.material3.*
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
@@ -212,7 +44,7 @@ fun Lab1Task1Screen() {
         modifier = Modifier
             .padding(16.dp)
             .fillMaxSize()
-            .background(Color(0xFFF9F9F9)) // Light gray background
+            .background(Color(0xFFF9F9F9))
             .verticalScroll(scrollState)
     ) {
         Column(
@@ -321,7 +153,7 @@ fun FuelInputField(value: Double, onValueChange: (Double) -> Unit, label: String
         TextField(
             value = inputValue,
             onValueChange = {
-                if (it.all { char -> char.isDigit() || char == '.' }) { // Only allow digits and dots
+                if (it.all { char -> char.isDigit() || char == '.' }) {
                     inputValue = it
                     it.toDoubleOrNull()?.let { it1 -> onValueChange(it1) }
                 }
@@ -334,8 +166,8 @@ fun FuelInputField(value: Double, onValueChange: (Double) -> Unit, label: String
                 .background(Color.White)
                 .fillMaxWidth()
                 .padding(8.dp)
-                .border(1.dp, Color.Gray, shape = MaterialTheme.shapes.medium) // Border radius
-                .clip(MaterialTheme.shapes.medium) // Rounded corners
+                .border(1.dp, Color.Gray, shape = MaterialTheme.shapes.medium)
+                .clip(MaterialTheme.shapes.medium)
         )
     }
 }
