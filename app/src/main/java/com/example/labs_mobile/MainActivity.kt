@@ -16,6 +16,7 @@ import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.example.labs_mobile.labs.lab1.task1.screens.Lab1Task1Screen
 import com.example.labs_mobile.labs.lab1.task2.screens.Lab1Task2Screen
+import com.example.labs_mobile.labs.lab2.task1.screens.EmissionCalculatorScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -59,6 +60,7 @@ fun AppNavigation() {
 fun LabListScreen(navController: NavController) {
     val labs = listOf(
         Lab(1, "Lab 1"),
+        Lab(2, "Lab 2"),
     )
 
     LazyColumn(
@@ -102,6 +104,9 @@ fun TaskListScreen(navController: NavController, labId: String, taskListRoute: S
                 Task("1", "Task 1"),
                 Task("2", "Task 2")
             )
+            "2" -> listOf(
+                Task("1", "Task 1")
+            )
             else -> emptyList()
         }
     }
@@ -128,11 +133,17 @@ private val lab1TaskMapping: Map<String, @Composable () -> Unit> = mapOf(
     "2" to { Lab1Task2Screen() }
 )
 
+private val lab2TaskMapping: Map<String, @Composable () -> Unit> = mapOf(
+    "1" to { EmissionCalculatorScreen() }
+)
+
+
 
 @Composable
 fun TaskDetailsScreen(taskId: String, labId: String) {
     when (labId) {
         "1" -> lab1TaskMapping[taskId]?.invoke() ?: Text("Unknown Task")
+        "2" -> lab2TaskMapping[taskId]?.invoke() ?: Text("Unknown Task")
         else -> Text("Unknown Lab")
     }
 }
