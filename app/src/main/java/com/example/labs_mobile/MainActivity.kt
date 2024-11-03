@@ -20,6 +20,7 @@ import com.example.labs_mobile.labs.lab2.task1.screens.EmissionCalculatorScreen
 import com.example.labs_mobile.labs.lab3.screens.SolarCalculatorScreen
 import com.example.labs_mobile.labs.lab4.screens.ShortCircuitCalculatorScreen
 import com.example.labs_mobile.labs.lab5.screens.ElectricalCalculationsScreen
+import com.example.labs_mobile.labs.lab6.screens.ElectricalLoadCalculationsScreen
 
 
 class MainActivity : ComponentActivity() {
@@ -67,6 +68,7 @@ fun LabListScreen(navController: NavController) {
         Lab(3, "Lab 3"),
         Lab(4, "Lab 4"),
         Lab(5, "Lab 5"),
+        Lab(6, "Lab 6"),
     )
 
     LazyColumn(
@@ -122,6 +124,9 @@ fun TaskListScreen(navController: NavController, labId: String, taskListRoute: S
             "5" -> listOf(
                 Task("1", "Task 1")
             )
+            "6" -> listOf(
+                Task("1", "Task 1")
+            )
             else -> emptyList()
         }
     }
@@ -164,6 +169,10 @@ private val lab5TaskMapping: Map<String, @Composable () -> Unit> = mapOf(
     "1" to { ElectricalCalculationsScreen() }
 )
 
+private val lab6TaskMapping: Map<String, @Composable () -> Unit> = mapOf(
+    "1" to { ElectricalLoadCalculationsScreen() }
+)
+
 
 @Composable
 fun TaskDetailsScreen(taskId: String, labId: String) {
@@ -173,6 +182,7 @@ fun TaskDetailsScreen(taskId: String, labId: String) {
         "3" -> lab3TaskMapping[taskId]?.invoke() ?: Text("Unknown Task")
         "4" -> lab4TaskMapping[taskId]?.invoke() ?: Text("Unknown Task")
         "5" -> lab5TaskMapping[taskId]?.invoke() ?: Text("Unknown Task")
+        "6" -> lab6TaskMapping[taskId]?.invoke() ?: Text("Unknown Task")
         else -> Text("Unknown Lab")
     }
 }
