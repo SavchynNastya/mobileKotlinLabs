@@ -29,6 +29,7 @@ fun ElectricalLoadCard(load: ElectricalLoad) {
             Text("Номінальна напруга: ${load.nominalVoltage} кВ")
             Text("Номінальна потужність: ${load.nominalPower} кВт")
             Text("Коефіцієнт використання: ${load.usageCoefficient}")
+            Text("Коефіцієнт реактивної потужності: ${load.reactivePowerCoefficient}")
 
             val current = LoadCalculator.calculateLoadCurrent(load)
             Text("Розрахунковий струм: $current А")
