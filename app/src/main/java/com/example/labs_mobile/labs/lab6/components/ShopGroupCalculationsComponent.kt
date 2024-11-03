@@ -34,18 +34,6 @@ fun ShopGroupCalculationsComponent() {
     val overallShopPower = LoadCalculator.calculateTotalPower(overallActivePower, overallReactivePower)
     val overallGroupCurrent = LoadCalculator.calculateGroupCurrent(overallActivePower, 0.38)
 
-//    Column(
-//        modifier = Modifier.fillMaxWidth(),
-//        verticalArrangement = Arrangement.spacedBy(8.dp)
-//    ) {
-//        Text("Результати розрахунків:", style = MaterialTheme.typography.titleLarge)
-//        Text("Коефіцієнт використання цеху в цілому (Крупні ЕП): $fullUsageCoefficientLarge", style = MaterialTheme.typography.bodyLarge)
-//        Text("Ефективна кількість ЕП цеху в цілому: $effectiveLoadPowerFull", style = MaterialTheme.typography.bodyLarge)
-//        Text("Розрахункове активне навантаження на шинах 0,38 кВ ТП: $overallActivePower", style = MaterialTheme.typography.bodyLarge)
-//        Text("Розрахункове реактивне навантаження на шинах 0,38 кВ ТП: $overallReactivePower", style = MaterialTheme.typography.bodyLarge)
-//        Text("Повна потужність на шинах 0,38 кВ ТП: $overallShopPower", style = MaterialTheme.typography.bodyLarge)
-//        Text("Розрахунковий груповий струм на шинах 0,38 кВ ТП: $overallGroupCurrent", style = MaterialTheme.typography.bodyLarge)
-//    }
     Column(
         modifier = Modifier
             .fillMaxWidth()
